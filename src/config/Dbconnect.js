@@ -3,3 +3,5 @@ const mongoose = require('mongoose')
 const DBconnect =async()=>{
    await mongoose.connect(process.env.DB_URL)
 }
+
+module.exports = DBconnect;
