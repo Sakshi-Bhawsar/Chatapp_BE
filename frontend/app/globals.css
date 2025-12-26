@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+.app{
+    min-height:100vh;
+    display: flex;
+    background-image: url("../assets/chat.jpg");
+    background-size: cover;
+    background-position: center;
+}
