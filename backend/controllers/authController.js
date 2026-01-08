@@ -5,21 +5,30 @@ const jwt = require('jsonwebtoken')
 
 const signUp = async (req, res) => {
     try {
-        const { fullName, email, password } = req.body
-        validate(fullName, email, password)
+        const { name, email, password, confirmPassword, pictureUrl } = req.body
+        validate(name, email, password, confirmPassword)
 
         const existUser = await User.findOne({ email: email })
         if (existUser) {
             res.status(400).send({ sucess: false, meassage: 'user alredy exsit' })
+            return
+        }
+
+        if (password !== confirmPassword) {
+            res.status(400).send({ sucess: false, meassage: 'password and confirm password not match' })
+            return
         }
 
         const bcryptPassword = await bcrypt.hash(password, 10)
 
         const user = new User({
-            fullName,
+            name,
             email,
-            password: bcryptPassword
+            password: bcryptPassword,
         })
+        if (pictureUrl) {
+            user.pic = pictureUrl
+        }
         await user.save()
         res.status(201).json({
             sucess: true,
@@ -38,7 +47,7 @@ const signUp = async (req, res) => {
 
 const login = async (req, res) => {
     try {
-        const { fullName, email, password } = req.body
+        const { email, password } = req.body
         const user = await User.findOne({ email: email })
         if (!user) {
             res.status(401).send({
@@ -74,11 +83,11 @@ const login = async (req, res) => {
     }
 }
 
-const logOut = async(req,res) => {
+const logOut = async (req, res) => {
     try {
-    res.cookie('token',null,{expires:new Date(Date.now())}).status(200).send({
-        meassage:"user logut sucessfully"
-    })
+        res.cookie('token', null, { expires: new Date(Date.now()) }).status(200).send({
+            meassage: "user logut sucessfully"
+        })
 
     } catch (err) {
         console.log(err)
@@ -90,4 +99,4 @@ const logOut = async(req,res) => {
     }
 }
 
-module.exports = { signUp, login,logOut }
+module.exports = { signUp, login, logOut }
