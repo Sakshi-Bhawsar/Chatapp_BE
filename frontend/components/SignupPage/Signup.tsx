@@ -6,6 +6,7 @@ import { Label } from "../ui/label"
 import { useState } from "react"
 import { userSignup } from "@/queries/userAuth"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 interface errorType {
   name?: string;
@@ -174,11 +175,13 @@ const Signup = () => {
 
             <Button className="w-full hover:bg-gray-300  active:text-gray-900 cursor-pointer" onClick={handleSignup}>Sign Up</Button>
 
-            <p className="text-sm text-center text-muted-foreground">
+            <p className="text-sm  text-center text-muted-foreground">
               Already have an account?{" "}
+              <Link href="/login">
               <span className="text-black font-medium cursor-pointer hover:underline">
                 Login
               </span>
+              </Link>
             </p>
           </form>
         </CardContent>
