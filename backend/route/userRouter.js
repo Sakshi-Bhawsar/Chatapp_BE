@@ -4,7 +4,7 @@ const auth = require('../middleware/auth')
 const { getAllUser } = require('../controllers/userController')
 const userRouter = express.Router()
 
-userRouter.get("/all",auth,getAllUser)
+userRouter.get("/all/users",auth,getAllUser)
 
 userRouter.delete('/user',auth,async(req,res)=>{
        const {email} = req.body

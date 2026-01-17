@@ -64,7 +64,7 @@ const login = async (req, res) => {
             user.password = undefined
             res.status(201).send({
                 success: true,
-                meassage: "user created",
+                meassage: "user login sucessfully",
                 data: user
             })
         } else {

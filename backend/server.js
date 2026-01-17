@@ -3,14 +3,18 @@ const DBconnect = require('./config/Dbconnect')
 const dotenv = require('dotenv')
 const authRouter = require('./route/authRoute')
 const cors = require('cors')
+const userRouter = require('./route/userRouter')
+const cookieParser = require('cookie-parser')
 
 dotenv.config()
 const app= express()
 app.use(cors());
+app.use(cookieParser());
 const PORT = process.env.PORT || 4000
 
 app.use(express.json())
 app.use('/api/auth',authRouter)
+app.use('/api/get',userRouter)
 
 
 app.get('/',async(req,res)=>{

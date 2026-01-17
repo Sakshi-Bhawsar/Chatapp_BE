@@ -1,3 +1,6 @@
+const User = require("../schema/user")
+
+
 const getAllUser = async (req, res) => {
     try {
         const user = req.user
@@ -13,6 +16,7 @@ const getAllUser = async (req, res) => {
             all: users
         })
     } catch (err) {
+        console.log(err)
         res.status(500).json({
             sucess: false,
             meassage: 'something want wrong'
