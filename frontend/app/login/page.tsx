@@ -2,7 +2,7 @@ import Login from "@/components/loginPage/Login"
 
 const LoginPage =()=>{
     return(
-        <div>
+        <div className="app">
             <Login/>
         </div>
     )

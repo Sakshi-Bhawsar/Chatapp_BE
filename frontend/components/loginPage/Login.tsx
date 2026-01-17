@@ -76,7 +76,7 @@ const Login = () => {
     console.log(loginUser);
 
     return (
-        <div className="min-h-screen w-full flex items-center justify-center bg-cover bg-center" >
+        <div className="min-h-screen app w-full flex items-center justify-center bg-cover bg-center" >
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/50" />
 

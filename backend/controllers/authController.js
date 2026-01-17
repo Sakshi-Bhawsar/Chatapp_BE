@@ -31,8 +31,8 @@ const signUp = async (req, res) => {
         }
         await user.save()
         res.status(201).json({
-            sucess: true,
-            meassage: 'user created sucessfully'
+            success: true,
+            message: 'user created successfully'
         })
 
     } catch (err) {
@@ -63,7 +63,7 @@ const login = async (req, res) => {
             })
             user.password = undefined
             res.status(201).send({
-                sucess: true,
+                success: true,
                 meassage: "user created",
                 data: user
             })
@@ -92,7 +92,7 @@ const logOut = async (req, res) => {
     } catch (err) {
         console.log(err)
         res.status(500).send({
-            sucess: false,
+            success: false,
             error: err.message
         })
 
