@@ -65,7 +65,7 @@ const login = async (req, res) => {
             res.status(201).send({
                 success: true,
                 meassage: "user login sucessfully",
-                data: user
+                user: user
             })
         } else {
             res.status(400).send({

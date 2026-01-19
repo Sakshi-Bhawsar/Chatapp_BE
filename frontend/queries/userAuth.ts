@@ -16,10 +16,15 @@ export const userSignup = async (name: string, email: string, password: string, 
 
 export const userLogin = async (email: string, password: string) => {
     try {
-        const {setFlag} = userStore.getState()
+        const { setFlag, setUser } = userStore.getState()
         const path = `/api/login`;
         const response = await api.post(path, { email, password });
-        response.data.success ? setFlag(1) : setFlag(0);
+        response.data.success ? (
+            setFlag(1),
+            setUser(response?.data?.user)
+        )
+            :
+            (setFlag(0));
         return response.data;
     } catch (err) {
         console.log(err);
